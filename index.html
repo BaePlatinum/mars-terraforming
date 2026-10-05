@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mars — Your New Home Awaits!</title>
+<style>
+  :root{
+    --red:#b52b1f; --orange:#d9542b; --cream:#f3ddb0; --paper:#ead09a;
+    --ink:#171511; --dark:#201d18;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0; color:var(--ink);
+    font-family: Arial, Helvetica, sans-serif;
+    background:
+      radial-gradient(circle at 20% 10%, rgba(255,255,255,.07), transparent 22%),
+      repeating-linear-gradient(0deg,rgba(0,0,0,.025) 0 1px,transparent 1px 4px),
+      #8e211b;
+  }
+  .poster{
+    max-width:1100px; margin:0 auto; overflow:hidden;
+    background:var(--cream); min-height:100vh;
+    box-shadow:0 0 50px #36100d;
+  }
+  .hero{
+    position:relative; min-height:650px; padding:48px 55px 55px; color:#f7e7bd;
+    background:
+      linear-gradient(160deg, transparent 0 59%, rgba(0,0,0,.15) 59% 60%, transparent 60%),
+      radial-gradient(circle at 77% 43%, #f4bb74 0 19%, #dc6a3b 19.3% 20%, transparent 20.4%),
+      linear-gradient(#b72c20,#d44d27 62%,#7c1b18);
+  }
+  .rays{
+    position:absolute; right:-110px; top:-95px; width:560px; height:360px;
+    background:repeating-conic-gradient(from 210deg at 100% 0,#f2d9a6 0 5deg,transparent 5deg 13deg);
+    opacity:.9; transform:rotate(3deg);
+  }
+  .title{position:relative; z-index:2; font-weight:1000; text-transform:uppercase; line-height:.82; letter-spacing:-4px; font-size:clamp(78px,14vw,155px); margin:0}
+  .subtitle{position:relative;z-index:2;text-transform:uppercase;font-weight:900;font-size:clamp(27px,5vw,52px);margin:8px 0 30px;letter-spacing:-1px}
+  .pitch{position:relative;z-index:2;margin-left:28%;max-width:470px;text-align:center;text-transform:uppercase}
+  .pitch strong{display:block;font-size:34px;margin-bottom:6px}
+  .pitch span{font-weight:800;font-size:21px;line-height:1.35}
+  .landscape{position:absolute;left:0;right:0;bottom:0;height:250px;background:
+      linear-gradient(165deg,transparent 0 40%,#501814 40% 43%,transparent 43%),
+      linear-gradient(195deg,transparent 0 44%,#6b1c17 44% 49%,transparent 49%),
+      linear-gradient(8deg,#5b1715 0 25%,#a02a20 25% 45%,transparent 45%);}
+  .astronaut{
+    position:absolute;z-index:3;left:9%;bottom:90px;width:115px;height:230px;
+    background:#171717;border:7px solid #e6bb78;border-radius:42% 42% 20% 20%;
+    box-shadow:30px 80px 0 -17px #171717,-29px 80px 0 -17px #171717;
+  }
+  .astronaut:before{content:"";position:absolute;left:13px;top:-72px;width:76px;height:76px;border-radius:50%;background:#171717;border:7px solid #e6bb78}
+  .astronaut:after{content:"";position:absolute;left:25px;top:-55px;width:48px;height:31px;border-radius:50%;background:#b34b32;border:3px solid #e6bb78}
+  .cta{
+    position:absolute;z-index:4;right:4%;bottom:42px;transform:rotate(-3deg);
+    background:#f5deb0;color:#181512;padding:17px 28px;border-left:15px solid transparent;
+    font-size:30px;font-weight:1000;text-transform:uppercase;box-shadow:0 4px 0 rgba(0,0,0,.25)
+  }
+  .cta small{display:block;color:#a62a20;font-size:15px;text-align:center;margin-top:5px}
+  section{padding:30px 28px}
+  .why{background:#171511;color:var(--cream);padding-bottom:12px}
+  h2{text-align:center;text-transform:uppercase;font-size:38px;margin:0 0 22px;letter-spacing:1px}
+  .cards{display:grid;grid-template-columns:repeat(4,1fr);background:var(--cream);color:var(--ink);border:6px solid #171511}
+  .card{padding:22px 18px 26px;text-align:center;border-right:2px solid #29231b}
+  .card:last-child{border:0}
+  .icon{width:76px;height:76px;border-radius:50%;background:var(--red);color:var(--cream);display:grid;place-items:center;margin:0 auto 15px;font-size:35px;font-weight:bold}
+  .card h3{color:#a72b20;text-transform:uppercase;font-size:20px;line-height:1.05;margin:0 0 10px}
+  .card p{font-size:16px;line-height:1.35;margin:0}
+  .risks{background:#1c1a17;color:var(--cream);border-top:8px solid var(--paper)}
+  .risks h2{text-align:left;font-size:34px;border-bottom:2px solid var(--paper);padding-bottom:12px}
+  .risks h2 span{font-weight:400;font-size:21px}
+  .riskgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
+  .risk{padding:8px 20px;border-right:1px solid var(--paper)}
+  .risk:last-child{border:0}
+  .risk h3{text-transform:uppercase;font-size:19px;margin:5px 0 12px;color:#f1d69d}
+  .risk ul{padding-left:18px;margin:0}
+  .risk li{margin:0 0 10px;line-height:1.35}
+  .recommend{
+    background:var(--paper);padding:32px 45px 38px;border-top:8px solid var(--red);
+    display:grid;grid-template-columns:1fr 2fr;gap:30px;align-items:center
+  }
+  .recommend h2{color:#9d291f;text-align:left;font-size:31px;margin:0}
+  .recommend p{font-size:20px;line-height:1.5;margin:0}
+  footer{background:#171511;color:#d9c494;text-align:center;padding:16px;font-size:12px}
+  @media(max-width:760px){
+    .hero{min-height:620px;padding:30px 24px}.pitch{margin-left:10%;margin-top:45px}.astronaut{transform:scale(.75);transform-origin:bottom left}
+    .cards,.riskgrid{grid-template-columns:1fr 1fr}.card:nth-child(2){border-right:0}.card{border-bottom:2px solid #29231b}
+    .risk:nth-child(2){border-right:0}.risk{border-bottom:1px solid var(--paper)}
+    .recommend{grid-template-columns:1fr}.cta{font-size:21px}
+  }
+  @media(max-width:480px){.cards,.riskgrid{grid-template-columns:1fr}.card,.risk{border-right:0}.pitch{margin-left:0}.title{letter-spacing:-2px}}
+
+  .image-hero{
+    margin:0;
+    padding:0;
+    background:#b52b1f;
+    line-height:0;
+  }
+  .image-hero img{
+    display:block;
+    width:100%;
+    height:auto;
+    margin:0;
+  }
+</style>
+</head>
+<body>
+<main class="poster">
+  <header class="image-hero">
+    <img src="mars_banner.png" alt="Vintage propaganda-style Mars recruitment advertisement: Mars — Your New Home Awaits!">
+  </header>
+
+  <section class="why">
+    <h2>Why Move to Mars?</h2>
+    <div class="cards">
+      <article class="card">
+        <div class="icon">★</div>
+        <h3>A Second Home for Humanity</h3>
+        <p>Help create a backup civilization and ensure humanity's survival beyond Earth.</p>
+      </article>
+      <article class="card">
+        <div class="icon">!</div>
+        <h3>Advance Human Knowledge</h3>
+        <p>Drive breakthroughs in agriculture, energy, medicine, robotics, and space travel.</p>
+      </article>
+      <article class="card">
+        <div class="icon">▲</div>
+        <h3>Explore a New World</h3>
+        <p>Study an entirely new planet and help humanity expand farther into the solar system.</p>
+      </article>
+      <article class="card">
+        <div class="icon">✦</div>
+        <h3>Build a Planet from Scratch</h3>
+        <p>Terraforming could one day make parts of Mars warmer and more suitable for human life.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="risks">
+    <h2 style="text-align: center;">Important Considerations</h2>
+    <div class="riskgrid">
+      <article class="risk">
+        <h3>Environmental Risks</h3>
+        <ul>
+          <li>Terraforming may permanently alter the natural Martian environment.</li>
+          <li>Undiscovered microorganisms could be harmed or destroyed.</li>
+          <li>Large-scale changes could have unintended consequences.</li>
+        </ul>
+      </article>
+      <article class="risk">
+        <h3>Ethical Questions</h3>
+        <ul>
+          <li>Do humans have the right to transform another planet for our own benefit?</li>
+          <li>We could destroy evidence of potential Martian life.</li>
+          <li>Future generations may disagree with irreversible choices made today.</li>
+        </ul>
+      </article>
+      <article class="risk">
+        <h3>Geopolitical Concerns</h3>
+        <ul>
+          <li>Who should control Martian land and resources?</li>
+          <li>Competition could create disputes between countries and corporations.</li>
+          <li>Access controlled by a few could increase inequality.</li>
+        </ul>
+      </article>
+      <article class="risk">
+        <h3>Cost &amp; Priorities</h3>
+        <ul>
+          <li>Terraforming would require enormous amounts of money, energy, technology, and time.</li>
+          <li>Those resources could instead address urgent problems on Earth.</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+<section class="recommend">
+  <h2>Conclusion.</h2>
+
+  <div>
+    <h3 style="font-size: 28px; margin: 0 0 12px; text-transform: uppercase;">
+      Should we terraform Mars? 
+    </h3>
+
+    <p>
+      <strong>
+        Not yet. Humanity should not begin terraforming Mars until we agree on how the planet will be governed.
+      </strong>
+    </p>
+
+    <p>
+      Before permanently changing another planet, we need clear international rules that answer major questions:
+    </p>
+
+    <ul style="font-size: 18px; line-height: 1.5;">
+      <li>Who, if anyone, can own land on Mars?</li>
+      <li>Who controls and distributes its resources?</li>
+      <li>What laws apply to settlements?</li>
+      <li>Can countries or private companies claim territory?</li>
+      <li>Who is responsible for protecting the Martian environment?</li>
+      <li>How will disputes between settlements, countries, or companies be resolved?</li>
+    </ul>
+
+    <p>
+      Terraforming Mars could benefit humanity, but once major environmental changes begin,
+      they may be impossible to reverse. <strong>We should establish the rules before we reshape the planet.</strong>
+    </p>
+
+  </div>
+</section>
+</main>
+</body>
+</html>
